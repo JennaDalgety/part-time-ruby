@@ -26,9 +26,8 @@
 class Blackjack
 
   def initialize(bankroll)
-    @wager_win = (bankroll += @wager)
-    @wager_lose = (bankroll -= @wager)
-  end
+    @wager_win = (bankroll += @wager.to_i)
+    @wager_lose = (bankroll -= @wager.to_i)
     puts "What is your name?"
     @name = gets.chomp
     puts "Welcome, #{@name}.  You've got $#{bankroll} to start."
@@ -72,7 +71,7 @@ class Blackjack
       puts "You have #{@player_card1} and #{@player_card2}, for a combined #{@hand}"
     end
     dealer_deal
-
+  end
   def dealer_deal
     @dealer_card1 = rand(1..11)
     @dealer_card2 = rand(1..11)
@@ -273,6 +272,7 @@ class Blackjack
     end
   end
 end
+
 
 game1 = Blackjack.new(100)
 
