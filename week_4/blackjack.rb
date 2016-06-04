@@ -26,23 +26,17 @@
 class Blackjack
 
   def initialize(bankroll)
-    @money = bankroll
+    @wager_win = (bankroll += @wager)
+    @wager_lose = (bankroll -= @wager)
+  end
     puts "What is your name?"
     @name = gets.chomp
     puts "Welcome, #{@name}.  You've got $#{bankroll} to start."
     loop do
-      puts "You have $#{@money}.  How much would you like to wager?"
+      puts "You have $#{bankroll}.  How much would you like to wager?"
       @wager = gets.chomp.to_i
       player_deal
     end
-  end
-
-  def wager(win)
-    @money += @wager
-  end
-
-  def wager(lose)
-    @money -= @wager
   end
 
   def check_input
@@ -64,7 +58,7 @@ class Blackjack
       puts "You have #{@player_card1} and #{@player_card2}."
       puts "You've got 21!"
       puts "You win!"
-      wager(win)
+      wager_win
       puts "Would you like to play again Y/N?"
       @input = gets.chomp.upcase
         if @input == "y"
@@ -78,7 +72,6 @@ class Blackjack
       puts "You have #{@player_card1} and #{@player_card2}, for a combined #{@hand}"
     end
     dealer_deal
-  end
 
   def dealer_deal
     @dealer_card1 = rand(1..11)
@@ -99,7 +92,7 @@ class Blackjack
     if @hand == 21
       puts "You've got 21!"
       puts "You win!"
-      wager(win)
+      @wager_win
       puts "Would you like to play again Y/N?"
       @input = gets.chomp.upcase
         if @input == "y"
@@ -112,7 +105,7 @@ class Blackjack
     if @hand > 21
       puts "You've busted."
       puts "You lose!"
-      wager(lose_money)
+      @wager_lose
       puts "Would you like to play again Y/N?"
       @input = gets.chomp.upcase
         if @input == "y"
@@ -138,6 +131,7 @@ class Blackjack
     if @dealer_hand == 21
       puts "The dealer has 21!"
       puts "The dealer wins!"
+      @wager_lose
       puts "Would you like to play again Y/N?"
       @input = gets.chomp.upcase
         if @input == "y"
@@ -150,7 +144,7 @@ class Blackjack
     if @dealer_hand > 21
       puts "The dealer has #{@dealer_hand}.  The dealer busts."
       puts "You win!"
-      wager(win)
+      @wager_win
       puts "Would you like to play again Y/N?"
       @input = gets.chomp.upcase
         if @input == "y"
@@ -174,7 +168,7 @@ class Blackjack
     if @hand == 21
       puts "You've got 21!"
       puts "You win!"
-      wager(win)
+      @wager_win
       puts "Would you like to play again Y/N?"
       @input = gets.chomp.upcase
         if @input == "y"
@@ -187,7 +181,7 @@ class Blackjack
     if @hand > 21
       puts "You've busted."
       puts "You lose!"
-      wager(lose)
+      @wager_lose
       puts "Would you like to play again Y/N?"
       @input = gets.chomp.upcase
         if @input == "y"
@@ -213,7 +207,7 @@ class Blackjack
     if @dealer_hand == 21
       puts "The dealer has 21!"
       puts "The dealer wins!"
-      wager(lose)
+      @wager_lose
       puts "Would you like to play again Y/N?"
       @input = gets.chomp.upcase
         if @input == "y"
@@ -225,7 +219,7 @@ class Blackjack
     end
     if @dealer_hand > 21
       puts "The dealer has #{@dealer_hand}.  The dealer busts.  You win!"
-      wager(win)
+      @wager_win
       puts "Would you like to play again Y/N?"
       @input = gets.chomp.upcase
         if @input == "y"
@@ -242,7 +236,7 @@ class Blackjack
     if @hand > @dealer_hand
       puts "You have #{@hand} and the dealer has #{@dealer_hand}."
       puts "You win!"
-      wager(win)
+      @wager_win
       puts "Would you like to play again Y/N?"
       @input = gets.chomp.upcase
         if @input == "y"
@@ -255,7 +249,7 @@ class Blackjack
     if @hand < @dealer_hand
       puts "You have #{@hand} and the dealer has #{@dealer_hand}."
       puts "You lose!"
-      wager(lose)
+      @wager_lose
       puts "Would you like to play again Y/N?"
       @input = gets.chomp.upcase
         if @input == "y"
@@ -279,7 +273,6 @@ class Blackjack
     end
   end
 end
-
 
 game1 = Blackjack.new(100)
 
