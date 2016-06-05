@@ -25,31 +25,38 @@
 
 class Blackjack
 
-  def initialize(bankroll)
+  def initialize(initial_bankroll)
+    @bankroll = initial_bankroll
     puts "What is your name?"
     @name = gets.chomp
-    puts "Welcome, #{@name}.  You've got $#{bankroll} to start."
-    loop do
-      puts "You have $#{bankroll}.  How much would you like to wager?"
-      wager_amount = gets.chomp.to_i
-      player_deal
-    end
-  end
-
-  def wager_amount(wager)
-    if @wager_win = bankroll += wager
-    else @wager_lose = bankroll -= wager
-    end
+    puts "Welcome, #{@name}."
+    puts "You have $#{@bankroll}.  How much would you like to wager?"
+    @wager_money = gets.chomp.to_i
+    wager(@wager_money)
+    player_deal
   end
 
   def check_input
-    if @input.upcase == "Y"
-      puts "You have $#{@money}.  How much would you like to wager?"
-      @wager_amount = gets.chomp.to_i
-      player_deal
+    loop do
+      if @input.upcase == "Y"
+        puts "You have $#{@bankroll}.  How much would you like to wager?"
+        @wager_money = gets.chomp.to_i
+        wager(@wager_money)
+        player_deal
+      end
     end
     if @input.upcase == "N"
       abort
+    end
+  end
+
+  def wager(wager_amount)
+    if @wager_win = @bankroll + wager_amount
+      @bankroll.new.to_i
+    elsif @wager_tie = @bankroll + 0
+      @bankroll.new.to_i
+    else @wager_lose = @bankroll - wager_amount
+      @bankroll.new.to_i
     end
   end
 
@@ -265,6 +272,7 @@ class Blackjack
     if @hand == @dealer_hand
       puts "You have #{@hand} and the dealer has #{@dealer_hand}."
       puts "You tied!"
+      @wager_tie
       puts "Would you like to play again Y/N?"
       @input = gets.chomp.upcase
         if @input == "Y"
