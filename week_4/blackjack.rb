@@ -26,22 +26,26 @@
 class Blackjack
 
   def initialize(bankroll)
-    @wager_win = (bankroll += @wager.to_i)
-    @wager_lose = (bankroll -= @wager.to_i)
     puts "What is your name?"
     @name = gets.chomp
     puts "Welcome, #{@name}.  You've got $#{bankroll} to start."
     loop do
       puts "You have $#{bankroll}.  How much would you like to wager?"
-      @wager = gets.chomp.to_i
+      wager_amount = gets.chomp.to_i
       player_deal
+    end
+  end
+
+  def wager_amount(wager)
+    if @wager_win = bankroll += wager
+    else @wager_lose = bankroll -= wager
     end
   end
 
   def check_input
     if @input.upcase == "Y"
       puts "You have $#{@money}.  How much would you like to wager?"
-      @wager = gets.chomp.to_i
+      @wager_amount = gets.chomp.to_i
       player_deal
     end
     if @input.upcase == "N"
@@ -57,12 +61,12 @@ class Blackjack
       puts "You have #{@player_card1} and #{@player_card2}."
       puts "You've got 21!"
       puts "You win!"
-      wager_win
+      @wager_win
       puts "Would you like to play again Y/N?"
       @input = gets.chomp.upcase
-        if @input == "y"
+        if @input == "Y"
           check_input
-        if @input == "n"
+        if @input == "N"
           abort
         end
       end
@@ -94,9 +98,9 @@ class Blackjack
       @wager_win
       puts "Would you like to play again Y/N?"
       @input = gets.chomp.upcase
-        if @input == "y"
+        if @input == "Y"
           check_input
-        if @input == "n"
+        if @input == "N"
           abort
         end
       end
@@ -107,9 +111,9 @@ class Blackjack
       @wager_lose
       puts "Would you like to play again Y/N?"
       @input = gets.chomp.upcase
-        if @input == "y"
+        if @input == "Y"
           check_input
-        if @input == "n"
+        if @input == "N"
           abort
         end
       end
@@ -133,9 +137,9 @@ class Blackjack
       @wager_lose
       puts "Would you like to play again Y/N?"
       @input = gets.chomp.upcase
-        if @input == "y"
+        if @input == "Y"
           check_input
-        if @input == "n"
+        if @input == "N"
           abort
         end
       end
@@ -146,9 +150,9 @@ class Blackjack
       @wager_win
       puts "Would you like to play again Y/N?"
       @input = gets.chomp.upcase
-        if @input == "y"
+        if @input == "Y"
           check_input
-        if @input == "n"
+        if @input == "N"
           abort
         end
       end
@@ -170,9 +174,9 @@ class Blackjack
       @wager_win
       puts "Would you like to play again Y/N?"
       @input = gets.chomp.upcase
-        if @input == "y"
+        if @input == "Y"
           check_input
-        if @input == "n"
+        if @input == "N"
           abort
         end
       end
@@ -183,9 +187,9 @@ class Blackjack
       @wager_lose
       puts "Would you like to play again Y/N?"
       @input = gets.chomp.upcase
-        if @input == "y"
+        if @input == "Y"
           check_input
-        if @input == "n"
+        if @input == "N"
           abort
         end
       end
@@ -209,9 +213,9 @@ class Blackjack
       @wager_lose
       puts "Would you like to play again Y/N?"
       @input = gets.chomp.upcase
-        if @input == "y"
+        if @input == "Y"
           check_input
-        if @input == "n"
+        if @input == "N"
           abort
         end
       end
@@ -221,9 +225,9 @@ class Blackjack
       @wager_win
       puts "Would you like to play again Y/N?"
       @input = gets.chomp.upcase
-        if @input == "y"
+        if @input == "Y"
           check_input
-        if @input == "n"
+        if @input == "N"
           abort
         end
       end
@@ -238,9 +242,9 @@ class Blackjack
       @wager_win
       puts "Would you like to play again Y/N?"
       @input = gets.chomp.upcase
-        if @input == "y"
+        if @input == "Y"
           check_input
-        if @input == "n"
+        if @input == "N"
           abort
         end
       end
@@ -251,9 +255,9 @@ class Blackjack
       @wager_lose
       puts "Would you like to play again Y/N?"
       @input = gets.chomp.upcase
-        if @input == "y"
+        if @input == "Y"
           check_input
-        if @input == "n"
+        if @input == "N"
           abort
         end
       end
@@ -263,9 +267,9 @@ class Blackjack
       puts "You tied!"
       puts "Would you like to play again Y/N?"
       @input = gets.chomp.upcase
-        if @input == "y"
+        if @input == "Y"
           check_input
-        if @input == "n"
+        if @input == "N"
           abort
         end
       end
