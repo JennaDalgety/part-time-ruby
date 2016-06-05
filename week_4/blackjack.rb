@@ -39,7 +39,7 @@ class Blackjack
   def check_input
     loop do
       if @input.upcase == "Y"
-        puts "You have $#{@bankroll}.  How much would you like to wager?"
+        puts "You have $#{@new_bankroll}.  How much would you like to wager?"
         @wager_money = gets.chomp.to_i
         wager(@wager_money)
         player_deal
@@ -52,11 +52,10 @@ class Blackjack
 
   def wager(wager_amount)
     if @wager_win = @bankroll + wager_amount
-      @bankroll.new.to_i
-    elsif @wager_tie = @bankroll + 0
-      @bankroll.new.to_i
+      @new_bankroll
+    elsif @wager_tie = @ba@new_bankroll@bankroll.new.to_i
     else @wager_lose = @bankroll - wager_amount
-      @bankroll.new.to_i
+      @new_bankroll
     end
   end
 
