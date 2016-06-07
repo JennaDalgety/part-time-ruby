@@ -43,11 +43,11 @@ class Blackjack
       @input = gets.chomp.upcase
         if @input == "Y"
           check_input
-         exit if @input == "N"
-        #   abort
-        # end
+        if @input == "N"
+          abort
         end
-      end         
+      end
+    end         
     if @hand < 21
       puts "You have #{@player_card1} and #{@player_card2}, for a combined #{@hand}"
     end
@@ -78,9 +78,9 @@ class Blackjack
       @input = gets.chomp.upcase
         if @input == "Y"
           check_input
-        exit if @input == "N"
-        #   abort
-        # end
+        if @input == "N"
+          abort
+        end
       end
     end
     if @hand > 21
@@ -91,9 +91,9 @@ class Blackjack
       @input = gets.chomp.upcase
         if @input == "Y"
           check_input
-        exit if @input == "N"
-        #   abort
-        # end
+        if @input == "N"
+          abort
+        end
       end
     end
     if @play_command == "S"
@@ -117,9 +117,9 @@ class Blackjack
       @input = gets.chomp.upcase
         if @input == "Y"
           check_input
-        exit if @input == "N"
-        #   abort
-        # end
+        if @input == "N"
+          abort
+        end
       end
     end
     if @dealer_hand > 21
@@ -131,9 +131,9 @@ class Blackjack
       @input = gets.chomp.upcase
         if @input == "Y"
           check_input
-        exit if @input == "N"
-        #   abort
-        # end
+        if @input == "N"
+          abort
+        end
       end
     end
     puts "Would you like to (H)it or (S)tay?"
@@ -155,9 +155,9 @@ class Blackjack
       @input = gets.chomp.upcase
         if @input == "Y"
           check_input
-        exit if @input == "N"
-        #   abort
-        # end
+        if @input == "N"
+          abort
+        end
       end
     end
     if @hand > 21
@@ -168,9 +168,9 @@ class Blackjack
       @input = gets.chomp.upcase
         if @input == "Y"
           check_input
-        exit if @input == "N"
-        #   abort
-        # end
+        if @input == "N"
+          abort
+        end
       end
     end
     if @play_command == "S"
@@ -194,9 +194,9 @@ class Blackjack
       @input = gets.chomp.upcase
         if @input == "Y"
           check_input
-        exit if @input == "N"
-        #   abort
-        # end
+        if @input == "N"
+          abort
+        end
       end
     end
     if @dealer_hand > 21
@@ -207,11 +207,11 @@ class Blackjack
       @input = gets.chomp.upcase
         if @input == "Y"
           check_input
-        exit if @input == "N"
-        #   abort
-        # end
+        if @input == "N"
+          abort
         end
       end
+    end
     final_total
   end
 
@@ -224,9 +224,9 @@ class Blackjack
       @input = gets.chomp.upcase
         if @input == "Y"
           check_input
-        exit if @input == "N"
-        #   abort
-        # end
+        if @input == "N"
+          abort
+        end
       end
     end
     if @hand < @dealer_hand
@@ -237,9 +237,9 @@ class Blackjack
       @input = gets.chomp.upcase
         if @input == "Y"
           check_input
-        exit if @input == "N"
-        #   abort
-        # end
+        if @input == "N"
+          abort
+        end
       end
     end
     if @hand == @dealer_hand
@@ -250,9 +250,9 @@ class Blackjack
       @input = gets.chomp.upcase
         if @input == "Y"
           check_input
-        exit if @input == "N"
-        #   abort
-        # end
+        if @input == "N"
+          abort
+        end
       end
     end
   end
