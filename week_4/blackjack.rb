@@ -12,6 +12,7 @@ class Blackjack
 
   def check_input
     loop do
+      puts
       puts "You have $#{@bankroll}.  How much would you like to wager?"
       @wager_money = gets.chomp.to_i
       player_deal
@@ -35,10 +36,15 @@ class Blackjack
     @player_card2 = rand(1..11)
     @hand = @player_card1 + @player_card2
     if @hand == 21
+      puts
       puts "You have #{@player_card1} and #{@player_card2}."
       puts "You've got 21!"
       puts "You win $#{@wager_money}!"
       wager_win
+      if @bankroll == 0
+        puts "You are out of money.  Goodbye."
+          abort
+        end
       puts "Would you like to play again Y/N?"
       @input = gets.chomp.upcase
         if @input == "Y"
@@ -48,7 +54,26 @@ class Blackjack
           abort
         end
       end         
+    if @hand > 21
+      puts
+      puts "You've busted."
+      puts "You lose $#{@wager_money}."
+      wager_lose
+      if @bankroll == 0
+        puts "You are out of money.  Goodbye."
+          abort
+        end
+      puts "Would you like to play again Y/N?"
+      @input = gets.chomp.upcase
+        if @input == "Y"
+          check_input
+        end
+        if @input == "N"
+          abort
+        end
+      end
     if @hand < 21
+      puts
       puts "You have #{@player_card1} and #{@player_card2}, for a combined #{@hand}"
     end
     dealer_deal
@@ -58,6 +83,7 @@ class Blackjack
     @dealer_card1 = rand(1..11)
     @dealer_card2 = rand(1..11)
     @dealer_hand = @dealer_card1 + @dealer_card2
+    puts
     puts "The dealer has #{@dealer_card1}."
     puts "Would you like to (H)it or (S)tay?"
     @play_command = gets.chomp.upcase
@@ -68,9 +94,11 @@ class Blackjack
     if @play_command == "H" && @hand < 21
       @player_card3 = rand(1..11)
       @hand += @player_card3
+      puts
       puts "You have #{@player_card1}, #{@player_card2} and #{@player_card3}, for a combined #{@hand}."
     end
     if @hand == 21
+      puts
       puts "You've got 21!"
       puts "You win $#{@wager_money}!"
       wager_win
@@ -84,9 +112,14 @@ class Blackjack
         end
       end
     if @hand > 21
+      puts
       puts "You've busted."
       puts "You lose $#{@wager_money}."
       wager_lose
+      if @bankroll == 0
+        puts "You are out of money.  Goodbye."
+          abort
+        end
       puts "Would you like to play again Y/N?"
       @input = gets.chomp.upcase
         if @input == "Y"
@@ -103,16 +136,22 @@ class Blackjack
   end
 
   def dealer_hit1
+    puts
     puts "The dealer has #{@dealer_card1}."
     if @dealer_hand <= 17
       @dealer_card3 = rand(1..11)
       @dealer_hand += @dealer_card3
     end
     if @dealer_hand == 21
+      puts
       puts "The dealer has #{@dealer_card1}, #{@dealer_card2} and #{@dealer_card3}, for a combined #{@dealer_hand}."
       puts "The dealer has 21!"
       puts "The dealer wins!  You lose $#{@wager_money}."
       wager_lose
+      if @bankroll == 0
+        puts "You are out of money.  Goodbye."
+          abort
+        end
       puts "Would you like to play again Y/N?"
       @input = gets.chomp.upcase
         if @input == "Y"
@@ -123,10 +162,15 @@ class Blackjack
         end
       end
     if @dealer_hand > 21
+      puts
       puts "The dealer has #{@dealer_card1}, #{@dealer_card2} and #{@dealer_card3}, for a combined #{@dealer_hand}."
       puts "The dealer busts."
       puts "You win $#{@wager_money}!"
       wager_win
+      if @bankroll == 0
+        puts "You are out of money.  Goodbye."
+          abort
+        end
       puts "Would you like to play again Y/N?"
       @input = gets.chomp.upcase
         if @input == "Y"
@@ -145,12 +189,18 @@ class Blackjack
     if @play_command == "H" && @hand < 21
       @player_card4 = rand(1..11)
       @hand += @player_card4
+      puts
       puts "You have #{@player_card1}, #{@player_card2}, #{@player_card3} and #{@player_card4}, for a combined #{@hand}."
     end
     if @hand == 21
+      puts
       puts "You've got 21!"
       puts "You win $#{@wager_money}!"
       wager_win
+      if @bankroll == 0
+        puts "You are out of money.  Goodbye."
+          abort
+        end
       puts "Would you like to play again Y/N?"
       @input = gets.chomp.upcase
         if @input == "Y"
@@ -161,9 +211,14 @@ class Blackjack
         end
       end
     if @hand > 21
+      puts
       puts "You've busted."
       puts "You lose $#{@wager_money}."
       wager_lose
+      if @bankroll == 0
+        puts "You are out of money.  Goodbye."
+          abort
+        end
       puts "Would you like to play again Y/N?"
       @input = gets.chomp.upcase
         if @input == "Y"
@@ -180,16 +235,22 @@ class Blackjack
   end
 
   def dealer_hit2
+    puts
     puts "The dealer has #{@dealer_card1}."
     if @dealer_hand <= 17
       @dealer_card4 = rand(1..11)
       @dealer_hand += @dealer_card4
     end
     if @dealer_hand == 21
+      puts
       puts "The dealer has #{@dealer_card1}, #{@dealer_card2}, #{@dealer_card3} and #{@dealer_card4} for a combined #{@dealer_hand}."
       puts "The dealer has 21!"
       puts "The dealer wins!  You lose $#{@wager_money}."
       wager_lose
+      if @bankroll == 0
+        puts "You are out of money.  Goodbye."
+          abort
+        end
       puts "Would you like to play again Y/N?"
       @input = gets.chomp.upcase
         if @input == "Y"
@@ -200,9 +261,14 @@ class Blackjack
         end
       end
     if @dealer_hand > 21
+      puts
       puts "The dealer has #{@dealer_card1}, #{@dealer_card2}, #{@dealer_card3} and #{@dealer_card4} for a combined #{@dealer_hand}."
       puts "The dealer has #{@dealer_hand}.  The dealer busts.  You win!"
       wager_win
+      if @bankroll == 0
+        puts "You are out of money.  Goodbye."
+          abort
+        end
       puts "Would you like to play again Y/N?"
       @input = gets.chomp.upcase
         if @input == "Y"
@@ -217,9 +283,14 @@ class Blackjack
 
   def final_total
     if @hand > @dealer_hand
+      puts
       puts "You have #{@hand} and the dealer has #{@dealer_hand}."
       puts "You win $#{@wager_money}!"
       wager_win
+      if @bankroll == 0
+        puts "You are out of money.  Goodbye."
+          abort
+        end
       puts "Would you like to play again Y/N?"
       @input = gets.chomp.upcase
         if @input == "Y"
@@ -230,9 +301,14 @@ class Blackjack
         end
       end
     if @hand < @dealer_hand
+      puts
       puts "You have #{@hand} and the dealer has #{@dealer_hand}."
       puts "You lose $#{@wager_money}."
       wager_lose
+      if @bankroll == 0
+        puts "You are out of money.  Goodbye."
+          abort
+        end
       puts "Would you like to play again Y/N?"
       @input = gets.chomp.upcase
         if @input == "Y"
@@ -243,9 +319,14 @@ class Blackjack
         end
       end
     if @hand == @dealer_hand
+      puts
       puts "You have #{@hand} and the dealer has #{@dealer_hand}."
       puts "You tied!"
       wager_tie
+      if @bankroll == 0
+        puts "You are out of money.  Goodbye."
+          abort
+        end
       puts "Would you like to play again Y/N?"
       @input = gets.chomp.upcase
         if @input == "Y"
@@ -257,6 +338,5 @@ class Blackjack
       end
     end
   end
-
 
 game1 = Blackjack.new(100)
