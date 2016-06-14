@@ -339,9 +339,6 @@ class Blackjack
         end
       end
     if @hand == @dealer_hand
-      puts "You have #{@player_card1}, #{@player_card2}, #{@player_card3} and #{@player_card4}, for a combined #{@hand}."
-      puts "The dealer has #{@dealer_card1}, #{@dealer_card2}, #{@dealer_card3} and #{@dealer_card4} for a combined #{@dealer_hand}."
-      puts
       puts "You have #{@hand} and the dealer has #{@dealer_hand}."
       puts
       puts "You tied!"
