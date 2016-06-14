@@ -1,3 +1,5 @@
+# require 'blackjack_deck.rb'
+
 class Blackjack
 
   def initialize(initial_bankroll)
